@@ -51,7 +51,9 @@ class FIFO:
 
     def dequeue(self):
         # Retire et renvoie l'élément en tête de file
-        pass
+        if not self.is_empty():
+            return self.queue.pop(0)  # Retirer et renvoyer l'élément en tête
+        return None  # Si la file est vide
 
     def is_empty(self):
         # Vérifie si la file est vide
