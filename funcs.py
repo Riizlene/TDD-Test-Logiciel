@@ -73,8 +73,10 @@ class LIFO:
 
     def push(self, valeur):
         # Ajoute un élément au sommet de la pile
-        pass
+        self.stack.append(valeur)
 
     def pop(self):
         # Retire et renvoie l'élément au sommet de la pile
-        pass
+        if not self.is_empty():
+            return self.stack.pop() # Retirer et renvoyer l'élément du sommet
+        return None # Si la pile est vide
