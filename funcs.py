@@ -65,11 +65,11 @@ class FIFO:
 class LIFO:
     def __init__(self):
         # La structure de données sera une liste vide au début
-        pass
+        self.stack = []
 
     def is_empty(self):
         # Vérifie si la pile est vide
-        pass
+        return len(self.stack) == 0
 
     def push(self, valeur):
         # Ajoute un élément au sommet de la pile
