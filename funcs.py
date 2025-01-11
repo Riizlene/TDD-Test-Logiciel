@@ -6,3 +6,8 @@
 
 def top_3_valeurs(liste):
     return sorted(liste, reverse=True)[:3]
+
+# 1.2 : Fonction qui renvoie si un nombre est premier ou non
+
+def est_premier(n):
+    pass
