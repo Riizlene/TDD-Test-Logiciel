@@ -70,3 +70,30 @@ class TestFuncs(unittest.TestCase):
 
         # Vérification si la file est vide après avoir retiré tous les éléments
         self.assertTrue(fifo.is_empty())
+
+
+    # 2.2 : Classe LIFO
+
+    def test_lifo(self):
+        # Création d'une instance de LIFO
+        lifo = funcs.LIFO()
+
+        # Vérification de l'état initial : la pile est vide
+        self.assertTrue(lifo.is_empty())
+
+        # Ajout d'un élément dans la pile
+        lifo.push(10)
+        self.assertFalse(lifo.is_empty()) # La pile n'est plus vide
+        self.assertEqual(lifo.pop(), 10) # Le dernier élément ajouté doit être retiré
+
+        # Vérification si la pile est vide après pop
+        self.assertTrue(lifo.is_empty())
+
+        # Test avec plusieurs éléments
+        lifo.push(20)
+        lifo.push(30)
+        self.assertEqual(lifo.pop(), 30) # Le dernier ajouté (30) doit être retiré en premier
+        self.assertEqual(lifo.pop(), 20) # Le 2ème ajouté (20) doit être retiré après 30
+
+        # Vérification si la pile est vide après avoir retiré tous les éléments
+        self.assertTrue(lifo.is_empty())

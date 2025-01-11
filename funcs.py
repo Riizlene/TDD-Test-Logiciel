@@ -58,3 +58,23 @@ class FIFO:
     def is_empty(self):
         # Vérifie si la file est vide
         return len(self.queue) == 0
+
+
+# 2.2 : Classe LIFO
+
+class LIFO:
+    def __init__(self):
+        # La structure de données sera une liste vide au début
+        pass
+
+    def is_empty(self):
+        # Vérifie si la pile est vide
+        pass
+
+    def push(self, valeur):
+        # Ajoute un élément au sommet de la pile
+        pass
+
+    def pop(self):
+        # Retire et renvoie l'élément au sommet de la pile
+        pass
