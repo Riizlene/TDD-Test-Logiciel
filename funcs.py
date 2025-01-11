@@ -10,4 +10,10 @@ def top_3_valeurs(liste):
 # 1.2 : Fonction qui renvoie si un nombre est premier ou non
 
 def est_premier(n):
-    pass
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            return False
+    return True
+    
