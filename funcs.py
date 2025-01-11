@@ -20,5 +20,18 @@ def est_premier(n):
 # 1.3 : Fonction qui à partir d’une liste de nombre reverra si la liste représente ou pas une suite arithmétique
 
 def est_arithmetique(liste):
-    pass
+    # Si la liste a moins de 2 éléments, on considère que c'est une suite arithmétique
+    if len(liste) < 2:
+        return True
+
+    # On calcule la différence entre les 2 premiers éléments
+    diff = liste[1] - liste[0]
+
+    # Vérification des autres éléments
+    for i in range(2, len(liste)):
+        if liste[i] - liste[i-1] != diff:
+            return False
+
+    # Si toutes les différences sont égales
+    return True
     
