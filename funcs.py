@@ -35,3 +35,24 @@ def est_arithmetique(liste):
     # Si toutes les différences sont égales
     return True
     
+
+# Exercice 2
+
+# 2.1 : Classe FIFO
+
+class FIFO:
+    def __init__(self):
+        # Initialisation de la structure de données
+        pass
+
+    def enqueue(self, valeur):
+        # Ajoute un élément à la fin de la file
+        pass
+
+    def dequeue(self):
+        # Retire et renvoie l'élément en tête de file
+        pass
+
+    def is_empty(self):
+        # Vérifie si la file est vide
+        pass

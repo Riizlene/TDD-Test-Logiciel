@@ -41,3 +41,32 @@ class TestFuncs(unittest.TestCase):
         # Liste vide ou avec un seul élément : considérée comme arithmétique
         self.assertTrue(funcs.est_arithmetique([]))
         self.assertTrue(funcs.est_arithmetique([1]))
+
+
+    # Exercice 2
+
+    # 2.1 : Classe FIFO
+
+    def test_fifo(self):
+        # Cration d'une instance de FIFO
+        fifo = funcs.FIFO()
+
+        # Vérification de l'état initial : la file est vide
+        self.assertTrue(fifo.is_empty())
+
+        # Ajout d'un élément dans la file
+        fifo.enqueue(10)
+        self.assertFalse(fifo.is_empty()) # La file n'est plus vide
+        self.assertEqual(fifo.dequeue(), 10) # On peut récupérer l'élément 10
+
+        # Vérification si la file est vide après dequeue
+        self.assertTrue(fifo.is_empty())
+
+        # Test avec plusieurs éléments
+        fifo.enqueue(20)
+        fifo.enqueue(30)
+        self.assertEqual(fifo.dequeue(), 20) # Le 1er ajouté est le 1er retiré
+        self.assertEqual(fifo.dequeue(), 30) # Le 2ème ajouté est le 2ème retiré
+
+        # Vérification si la file est vide après avoir retiré tous les éléments
+        self.assertTrue(fifo.is_empty())
