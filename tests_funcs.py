@@ -26,3 +26,18 @@ class TestFuncs(unittest.TestCase):
         self.assertFalse(funcs.est_premier(9))
         # Nombre négatif 
         self.assertFalse(funcs.est_premier(-5)) # Pas de nombre premier négatif
+
+    
+    def test_est_arithmetique(self):
+        # Suite arithmétique avec différence 2
+        self.assertTrue(funcs.est_arithmetique([2,4,6,8]))
+
+        # Suite arithmétique avec différence -3
+        self.assertTrue(funcs.est_arithmetique([10,7,4,1]))
+
+        # Liste non arithmétique
+        self.assertFalse(funcs.est_arithmetique([1,2,4,5]))
+
+        # Liste vide ou avec un seul élément : considérée comme arithmétique
+        self.assertTrue(funcs.est_arithmetique([]))
+        self.assertTrue(funcs.est_arithmetique([1]))

@@ -16,4 +16,9 @@ def est_premier(n):
         if n % i == 0:
             return False
     return True
+
+# 1.3 : Fonction qui à partir d’une liste de nombre reverra si la liste représente ou pas une suite arithmétique
+
+def est_arithmetique(liste):
+    pass
     
