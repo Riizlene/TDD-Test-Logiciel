@@ -42,12 +42,12 @@ def est_arithmetique(liste):
 
 class FIFO:
     def __init__(self):
-        # Initialisation de la structure de données
-        pass
+        # La structure de données sera une liste vide au début
+        self.queue = []
 
     def enqueue(self, valeur):
         # Ajoute un élément à la fin de la file
-        pass
+        self.queue.append(valeur)
 
     def dequeue(self):
         # Retire et renvoie l'élément en tête de file
@@ -55,4 +55,4 @@ class FIFO:
 
     def is_empty(self):
         # Vérifie si la file est vide
-        pass
+        return len(self.queue) == 0
