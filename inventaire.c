@@ -1,68 +1,71 @@
 // Auteure : Rizlène Belabdelli
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-
-#define MAX_PRODUITS 100
 
 typedef struct {
     char nom[50];
     int quantite;
     float prix;
-} Produit;
+} Article;
 
-Produit inventaire[MAX_PRODUITS];
-int nombreProduits = 0;
+typedef struct {
+    Article articles[100];
+    int taille;
+} Inventaire;
 
-void ajouterProduit(char *nom, int quantite, float prix) {
-    for (int i = 0; i < nombreProduits; i++) {
-        if (strcmp(inventaire[i].nom, nom) == 0) {
-            inventaire[i].quantite += quantite;
-            inventaire[i].prix = prix;
-            return;
-        }
-    }
-    strcpy(inventaire[nombreProduits].nom, nom);
-    inventaire[nombreProduits].quantite = quantite;
-    inventaire[nombreProduits].prix = prix;
-    nombreProduits++;
-}
-
-void afficherInventaire() {
+void afficher_inventaire(const Inventaire* inventaire) {
     printf("Inventaire:\n");
-    for (int i = 0; i < nombreProduits; i++) {
-        printf("%s: %d (%.2f€)\n", inventaire[i].nom, inventaire[i].quantite, inventaire[i].prix);
+    for (int i = 0; i < inventaire->taille; i++) {
+        printf("%s: %d (%.2f€)\n", inventaire->articles[i].nom,
+               inventaire->articles[i].quantite, inventaire->articles[i].prix);
     }
 }
 
-void retirerProduit(char *nom, int quantite) {
-    for (int i = 0; i < nombreProduits; i++) {
-        if (strcmp(inventaire[i].nom, nom) == 0) {
-            if (inventaire[i].quantite >= quantite) {
-                inventaire[i].quantite -= quantite;
-            } else {
-                printf("Quantité insuffisante pour retirer %s\n", nom);
-            }
-            if (inventaire[i].quantite == 0) {
-                for (int j = i; j < nombreProduits - 1; j++) {
-                    inventaire[j] = inventaire[j + 1];
+void ajouter_article(Inventaire* inventaire, const char* nom, int quantite, float prix) {
+    for (int i = 0; i < inventaire->taille; i++) {
+        if (strcmp(inventaire->articles[i].nom, nom) == 0) {
+            inventaire->articles[i].quantite += quantite;
+            return;
+        }
+    }
+    strcpy(inventaire->articles[inventaire->taille].nom, nom);
+    inventaire->articles[inventaire->taille].quantite = quantite;
+    inventaire->articles[inventaire->taille].prix = prix;
+    inventaire->taille++;
+}
+
+void retirer_article(Inventaire* inventaire, const char* nom, int quantite) {
+    for (int i = 0; i < inventaire->taille; i++) {
+        if (strcmp(inventaire->articles[i].nom, nom) == 0) {
+            if (inventaire->articles[i].quantite <= quantite) {
+                // Supprimer l'article
+                for (int j = i; j < inventaire->taille - 1; j++) {
+                    inventaire->articles[j] = inventaire->articles[j + 1];
                 }
-                nombreProduits--;
+                inventaire->taille--;
+            } else {
+                inventaire->articles[i].quantite -= quantite;
             }
             return;
         }
     }
-    printf("Produit %s introuvable\n", nom);
+    printf("Article '%s' introuvable dans l'inventaire.\n", nom);
 }
 
 int main() {
-    ajouterProduit("Pomme", 10, 0.5);
-    ajouterProduit("Banane", 5, 0.3);
-    afficherInventaire();
-    retirerProduit("Pomme", 3);
-    afficherInventaire();
-    retirerProduit("Banane", 5);
-    afficherInventaire();
+    Inventaire inventaire = { .taille = 0 };
+
+    ajouter_article(&inventaire, "Pomme", 10, 0.5);
+    ajouter_article(&inventaire, "Banane", 5, 0.3);
+    afficher_inventaire(&inventaire);
+
+    retirer_article(&inventaire, "Pomme", 3);
+    afficher_inventaire(&inventaire);
+
+    retirer_article(&inventaire, "Banane", 5);
+    afficher_inventaire(&inventaire);
+
     return 0;
 }
-
