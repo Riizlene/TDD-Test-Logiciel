@@ -1,19 +1,9 @@
 // Auteure : Rizlène Belabdelli
 
+#include "inventaire.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-typedef struct {
-    char nom[50];
-    int quantite;
-    float prix;
-} Article;
-
-typedef struct {
-    Article articles[100];
-    int taille;
-} Inventaire;
 
 void afficher_inventaire(const Inventaire* inventaire) {
     printf("Inventaire:\n");
@@ -52,20 +42,4 @@ void retirer_article(Inventaire* inventaire, const char* nom, int quantite) {
         }
     }
     printf("Article '%s' introuvable dans l'inventaire.\n", nom);
-}
-
-int main() {
-    Inventaire inventaire = { .taille = 0 };
-
-    ajouter_article(&inventaire, "Pomme", 10, 0.5);
-    ajouter_article(&inventaire, "Banane", 5, 0.3);
-    afficher_inventaire(&inventaire);
-
-    retirer_article(&inventaire, "Pomme", 3);
-    afficher_inventaire(&inventaire);
-
-    retirer_article(&inventaire, "Banane", 5);
-    afficher_inventaire(&inventaire);
-
-    return 0;
 }
